@@ -98,3 +98,9 @@ window.onload = () => {
     result.hidden = false;
   }
 };
+
+const cardFlip = document.querySelector('.card-flip');
+
+cardFlip.addEventListener('click', () => {
+  cardFlip.style.transform = 'rotateY(180deg)';
+});
