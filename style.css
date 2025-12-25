@@ -1,5 +1,5 @@
 :root {
-    --ink: #2e2e2e;
+    --deep-red: #740000;
     --soft-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -7,11 +7,24 @@
     box-sizing: border-box;
 }
 
+#logo {
+    font-family: perandorySemiCondensed; 
+    src: url(fonts/Perandory-Semi-Condensed.otf);
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--deep-red);
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+}
+
 body {
     margin: 0;
     background: url(assets/postcard-bg-0.png);
-    font-family: system-ui, -apple-system, sans-serif;
-    color: var(--ink);
+    font-family: perandorySemiCondensed; 
+    src: url(fonts/Perandory-Semi-Condensed.otf);
+    color: var(--deep-red);
 }
 
 .welcome-card {
@@ -130,10 +143,12 @@ footer {
 .card-container {
     perspective: 1000px;
     /* enables 3D flip */
-    width: 816px;
+    width: 100%;
     height: 100%;
     margin: .5rem auto;
     padding-top: 2.5rem;
+    padding-left: 20%;
+    padding-right: 20%;
 }
 
 .card-flip {

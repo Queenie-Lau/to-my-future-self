@@ -2,7 +2,6 @@ const sendBtn = document.getElementById("send");
 const restartBtn = document.getElementById("restart");
 const copyBtn = document.getElementById("copy");
 
-const compose = document.getElementById("compose");
 const result = document.getElementById("result");
 
 const toInput = document.getElementById("to");
@@ -22,14 +21,6 @@ msgInput.addEventListener("input", () => {
   count.textContent = `${msgInput.value.length} / 280`;
 });
 
-/* vibe selection */
-document.querySelectorAll(".vibe-buttons button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    selectedVibe = btn.dataset.vibe;
-    card.className = `card ${selectedVibe}`;
-  });
-});
-
 /* send */
 sendBtn.onclick = () => {
   const data = {
@@ -42,7 +33,7 @@ sendBtn.onclick = () => {
   renderCard(data);
   updateURL(data);
 
-  compose.hidden = true;
+  document.querySelector('.card-container').style.display = 'none';
   result.hidden = false;
 };
 
@@ -76,7 +67,7 @@ copyBtn.onclick = () => {
 /* restart */
 restartBtn.onclick = () => {
   window.history.pushState({}, "", window.location.pathname);
-  compose.hidden = false;
+  document.querySelector('.card-container').style.display = 'block';
   result.hidden = true;
   copyBtn.textContent = "Copy link";
 };
@@ -94,13 +85,13 @@ window.onload = () => {
     };
 
     renderCard(data);
-    compose.hidden = true;
+    document.querySelector('.card-container').style.display = 'none';
     result.hidden = false;
   }
 };
 
+/* card flip */
 const cardFlip = document.querySelector('.card-flip');
-
 cardFlip.addEventListener('click', () => {
   cardFlip.style.transform = 'rotateY(180deg)';
 });
