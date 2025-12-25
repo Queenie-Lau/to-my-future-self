@@ -26,28 +26,31 @@
 
           <!-- BACK OF THE CARD -->
           <div class="card-back">
-            <div class="card-compose">
+            <div class="card-left-decoration">
+              <h1>POST CARD <br />FROM THE PRESENT</h1>
               <label>
-                To
-                <input id="to" placeholder="Future Me" />
+                TO:
+                <input id="to" placeholder="" />
               </label>
 
               <label>
-                Your note
+                FROM:
+                <input id="from" placeholder="" />
+              </label>
+            </div>
+
+            <div class="card-compose">
+              <label>
+                YOUR NOTE
                 <textarea
                   id="message"
-                  placeholder="I hope you’re still choosing yourself."
+                  placeholder=""
                   maxlength="280"
                 ></textarea>
                 <small id="count">0 / 280</small>
               </label>
 
-              <label>
-                For which year?
-                <input id="year" value="2026" />
-              </label>
-
-              <button id="send" class="primary">To My Future Self →</button>
+              <button id="send" class="primary">Send</button>
             </div>
           </div>
         </div>

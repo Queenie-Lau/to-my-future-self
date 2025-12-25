@@ -6,15 +6,12 @@ const result = document.getElementById("result");
 
 const toInput = document.getElementById("to");
 const msgInput = document.getElementById("message");
-const yearInput = document.getElementById("year");
 const count = document.getElementById("count");
 
 const card = document.getElementById("card");
 const cardTo = document.querySelector(".card-to");
 const cardMsg = document.querySelector(".card-message");
-const cardYear = document.querySelector(".card-year");
-
-let selectedVibe = "gentle";
+const cardDate = document.querySelector(".card-year"); // for the written date
 
 /* character count */
 msgInput.addEventListener("input", () => {
@@ -25,9 +22,7 @@ msgInput.addEventListener("input", () => {
 sendBtn.onclick = () => {
   const data = {
     to: toInput.value || "Future Me",
-    msg: msgInput.value,
-    year: yearInput.value,
-    vibe: selectedVibe
+    msg: msgInput.value
   };
 
   renderCard(data);
@@ -38,7 +33,7 @@ sendBtn.onclick = () => {
 };
 
 /* render card */
-function renderCard({ to, msg, year, vibe }) {
+function renderCard({ to, msg }) {
   const written = new Date().toLocaleDateString(undefined, {
     month: "short",
     day: "numeric",
@@ -47,8 +42,7 @@ function renderCard({ to, msg, year, vibe }) {
 
   cardTo.textContent = `To: ${to}`;
   cardMsg.textContent = msg;
-  cardYear.textContent = `— ${year} · written ${written}`;
-  card.className = `card ${vibe}`;
+  cardDate.textContent = `written ${written}`;
 }
 
 /* update URL */
@@ -79,9 +73,7 @@ window.onload = () => {
   if (params.has("msg")) {
     const data = {
       to: params.get("to"),
-      msg: params.get("msg"),
-      year: params.get("year"),
-      vibe: params.get("vibe") || "gentle"
+      msg: params.get("msg")
     };
 
     renderCard(data);
@@ -90,6 +82,7 @@ window.onload = () => {
   }
 };
 
+/* card flip animation */
 const cardFlip = document.querySelector('.card-flip');
 const cardFront = document.querySelector('.card-front');
 const cardBack = document.querySelector('.card-back');
@@ -97,9 +90,9 @@ const cardBack = document.querySelector('.card-back');
 cardFlip.addEventListener('click', () => {
   cardFlip.style.transform = 'rotateY(180deg)';
 
-  // After the flip duration, hide the front
+  // After the flip duration, hide the front and make back interactive
   setTimeout(() => {
     cardFront.style.display = 'none';
-    cardBack.style.position = 'relative'; // make it interactive
-  }, 500); // matches half of the flip duration for smooth transition
+    cardBack.style.position = 'relative';
+  }, 500); // matches half of the flip duration
 });
