@@ -187,11 +187,19 @@ footer {
 }
 
 .card-back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: url('assets/postcard-bg-2.png') no-repeat center/cover;
     transform: rotateY(180deg);
+    background: url('assets/postcard-bg-2.png') no-repeat center/cover;
+    background-size: cover;
     padding: 1rem;
-    color: #333;
+    color: var(--deep-red);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    /* initially absolute to overlap front */
+}
+
+.card-back.show {
+    position: relative;
+    /* after flip, make it interactive */
 }

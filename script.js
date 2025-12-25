@@ -90,8 +90,16 @@ window.onload = () => {
   }
 };
 
-/* card flip */
 const cardFlip = document.querySelector('.card-flip');
+const cardFront = document.querySelector('.card-front');
+const cardBack = document.querySelector('.card-back');
+
 cardFlip.addEventListener('click', () => {
   cardFlip.style.transform = 'rotateY(180deg)';
+
+  // After the flip duration, hide the front
+  setTimeout(() => {
+    cardFront.style.display = 'none';
+    cardBack.style.position = 'relative'; // make it interactive
+  }, 500); // matches half of the flip duration for smooth transition
 });
