@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To My Future Self</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <!-- COMPOSE -->
+      <section id="compose">
+        <h1>Some words are meant for later.</h1>
+        <p class="subtitle">
+          Write a note to your future self or someone you care about, and save
+          it for the right moment.
+        </p>
+
+        <label>
+          To
+          <input id="to" placeholder="Future Me" />
+        </label>
+
+        <label>
+          Your note
+          <textarea
+            id="message"
+            placeholder="I hope you’re still choosing yourself."
+            maxlength="280"
+          ></textarea>
+          <small id="count">0 / 280</small>
+        </label>
+
+        <div class="vibes">
+          <p>Choose a feeling</p>
+          <div class="vibe-buttons">
+            <button data-vibe="gentle">💫 Gentle</button>
+            <button data-vibe="bold">🔥 Bold</button>
+            <button data-vibe="dreamy">🌙 Dreamy</button>
+            <button data-vibe="chaotic">🌀 Chaotic</button>
+          </div>
+        </div>
+
+        <label>
+          For which year?
+          <input id="year" value="2026" />
+        </label>
+
+        <button id="send" class="primary">To My Future Self →</button>
+      </section>
+
+      <!-- RESULT -->
+      <section id="result" hidden>
+        <div id="card" class="card gentle">
+          <small class="card-to"></small>
+          <p class="card-message"></p>
+          <small class="card-year"></small>
+          <small class="card-brand">To My Future Self</small>
+        </div>
+
+        <div class="actions">
+          <button id="copy">Copy link</button>
+          <button id="restart">Write another</button>
+        </div>
+
+        <p class="after-text">
+          Save this link somewhere safe. It’s meant for later.
+        </p>
+      </section>
+    </main>
+
+    <footer>made by queenie</footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
