@@ -55,7 +55,7 @@ function encodeCard(data) {
     t: data.to,
     f: data.from,
     m: data.msg,
-    w: data.written.split("T")[0] // YYYY-MM-DD
+    w: data.written // keep full ISO timestamp
   };
 
   return btoa(encodeURIComponent(JSON.stringify(compact)));
@@ -67,7 +67,7 @@ function decodeCard(encoded) {
 
 /* send */
 sendBtn.onclick = () => {
-  const written = new Date().toISOString();
+  const written = new Date().toISOString(); // timezone-safe
 
   const data = {
     to: toInput.value || "Future Me",
