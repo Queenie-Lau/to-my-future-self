@@ -37,24 +37,27 @@ msgInput.addEventListener("input", () => {
 });
 
 /* handwriting effect */
-function typeMessage(text) {
+function typeMessage(text = "") {
   clearInterval(typingInterval);
   cardMsg.textContent = "";
   let i = 0;
 
   typingInterval = setInterval(() => {
-    cardMsg.textContent += text[i];
+    cardMsg.textContent += text[i] || "";
     i++;
     if (i >= text.length) clearInterval(typingInterval);
-  }, 30); // handwriting speed
+  }, 30);
 }
 
 /* send */
 sendBtn.onclick = () => {
+  const written = new Date().toISOString(); // store once
+
   const data = {
     to: toInput.value || "Future Me",
     from: fromInput.value || "Past Me",
-    msg: msgInput.value
+    msg: msgInput.value,
+    written
   };
 
   renderCard(data);
@@ -65,16 +68,18 @@ sendBtn.onclick = () => {
 };
 
 /* render card */
-function renderCard({ to, from, msg }) {
-  const written = new Date().toLocaleDateString(undefined, {
+function renderCard({ to, from, msg, written }) {
+  const date = written ? new Date(written) : new Date();
+
+  const formattedDate = date.toLocaleDateString(undefined, {
     month: "short",
     day: "numeric",
     year: "numeric"
   });
 
-  cardTo.textContent = `To: ${to}`;
-  cardFrom.textContent = `From: ${from}`;
-  cardDate.textContent = `written ${written}`;
+  cardTo.textContent = `To: ${to || "Future Me"}`;
+  cardFrom.textContent = `From: ${from || "Past Me"}`;
+  cardDate.textContent = `written ${formattedDate}`;
 
   typeMessage(msg);
 }
@@ -119,7 +124,8 @@ window.onload = () => {
     const data = {
       to: params.get("to"),
       from: params.get("from"),
-      msg: params.get("msg")
+      msg: params.get("msg"),
+      written: params.get("written")
     };
 
     renderCard(data);
