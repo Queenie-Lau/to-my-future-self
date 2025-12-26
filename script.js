@@ -5,11 +5,13 @@ const copyBtn = document.getElementById("copy");
 const result = document.getElementById("result");
 
 const toInput = document.getElementById("to");
+const fromInput = document.getElementById("from");
 const msgInput = document.getElementById("message");
 const count = document.getElementById("count");
 
 const card = document.getElementById("card");
 const cardTo = document.querySelector(".card-to");
+const cardFrom = document.querySelector(".card-from");
 const cardMsg = document.querySelector(".card-message");
 const cardDate = document.querySelector(".card-year"); // for the written date
 
@@ -22,6 +24,7 @@ msgInput.addEventListener("input", () => {
 sendBtn.onclick = () => {
   const data = {
     to: toInput.value || "Future Me",
+    from: fromInput.value || "Past Me",
     msg: msgInput.value
   };
 
@@ -33,7 +36,7 @@ sendBtn.onclick = () => {
 };
 
 /* render card */
-function renderCard({ to, msg }) {
+function renderCard({ to, from, msg }) {
   const written = new Date().toLocaleDateString(undefined, {
     month: "short",
     day: "numeric",
@@ -41,6 +44,7 @@ function renderCard({ to, msg }) {
   });
 
   cardTo.textContent = `To: ${to}`;
+  cardFrom.textContent = `From: ${from}`;
   cardMsg.textContent = msg;
   cardDate.textContent = `written ${written}`;
 }
@@ -64,6 +68,17 @@ restartBtn.onclick = () => {
   document.querySelector('.card-container').style.display = 'block';
   result.hidden = true;
   copyBtn.textContent = "Copy link";
+
+  // clear inputs
+  toInput.value = "";
+  fromInput.value = "";
+  msgInput.value = "";
+
+  // reset character counter
+  count.textContent = "0 / 280";
+
+  // reset copy button text
+  copyBtn.textContent = "Copy link";
 };
 
 /* auto-load from URL */
@@ -73,6 +88,7 @@ window.onload = () => {
   if (params.has("msg")) {
     const data = {
       to: params.get("to"),
+      from: params.get("from"),
       msg: params.get("msg")
     };
 

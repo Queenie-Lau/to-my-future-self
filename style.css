@@ -127,7 +127,7 @@ button:hover {
     line-height: 1.4;
 }
 
-.card-year, .card-to {
+.card-year, .card-to, .card-from {
     font-size: 1rem;
 }
 
@@ -136,17 +136,13 @@ button:hover {
     opacity: 0.4;
 }
 
-#card-result {
-    
-}
-
 .actions button {
     margin: 0.4rem;
 }
 
 .after-text {
     opacity: 0.7;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 footer {
