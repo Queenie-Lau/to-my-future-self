@@ -89,7 +89,7 @@ function updateURL(data) {
 /* copy link */
 copyBtn.onclick = () => {
   navigator.clipboard.writeText(window.location.href);
-  copyBtn.textContent = "Link copied ✨";
+  copyBtn.textContent = "Link Copied";
 };
 
 /* restart */
