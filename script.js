@@ -17,7 +17,6 @@ const msgInput = document.getElementById("message");
 const count = document.getElementById("count");
 
 /* card output */
-const card = document.getElementById("card");
 const cardTo = document.querySelector(".card-to");
 const cardFrom = document.querySelector(".card-from");
 const cardMsg = document.querySelector(".card-message");
@@ -49,9 +48,26 @@ function typeMessage(text = "") {
   }, 30);
 }
 
+/* ---------- BASE64 ENCODE / DECODE ---------- */
+
+function encodeCard(data) {
+  const compact = {
+    t: data.to,
+    f: data.from,
+    m: data.msg,
+    w: data.written.split("T")[0] // YYYY-MM-DD
+  };
+
+  return btoa(encodeURIComponent(JSON.stringify(compact)));
+}
+
+function decodeCard(encoded) {
+  return JSON.parse(decodeURIComponent(atob(encoded)));
+}
+
 /* send */
 sendBtn.onclick = () => {
-  const written = new Date().toISOString(); // store once
+  const written = new Date().toISOString();
 
   const data = {
     to: toInput.value || "Future Me",
@@ -84,10 +100,10 @@ function renderCard({ to, from, msg, written }) {
   typeMessage(msg);
 }
 
-/* update URL */
+/* update URL (Base64 single param) */
 function updateURL(data) {
-  const params = new URLSearchParams(data).toString();
-  const newURL = `${window.location.pathname}?${params}`;
+  const encoded = encodeCard(data);
+  const newURL = `${window.location.pathname}?c=${encoded}`;
   window.history.pushState({}, "", newURL);
 }
 
@@ -116,21 +132,28 @@ restartBtn.onclick = () => {
   cardBack.style.position = "absolute";
 };
 
-/* auto-load from URL */
+/* auto-load from Base64 URL */
 window.onload = () => {
   const params = new URLSearchParams(window.location.search);
+  const encoded = params.get("c");
 
-  if (params.has("msg")) {
+  if (!encoded) return;
+
+  try {
+    const decoded = decodeCard(encoded);
+
     const data = {
-      to: params.get("to"),
-      from: params.get("from"),
-      msg: params.get("msg"),
-      written: params.get("written")
+      to: decoded.t,
+      from: decoded.f,
+      msg: decoded.m,
+      written: decoded.w
     };
 
     renderCard(data);
     document.querySelector(".card-container").style.display = "none";
     result.hidden = false;
+  } catch (e) {
+    console.error("Invalid card data");
   }
 };
 
