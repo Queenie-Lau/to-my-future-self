@@ -81,6 +81,7 @@ button {
     cursor: pointer;
     font-family: perandorySemiCondensed;
     font-size: 1em;
+    box-shadow: var(--soft-shadow);
 }
 
 button.primary {
@@ -97,6 +98,15 @@ button:hover {
     opacity: 0.9;
 }
 
+#card-result {
+    background: url(assets/post-card.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 8%;
+    margin-bottom: 3%;
+    padding: 20%;
+}
 #result {
     text-align: center;
 }
@@ -113,13 +123,21 @@ button:hover {
 }
 
 .card-message {
-    font-size: 1.2rem;
+    font-size: 2rem;
     line-height: 1.4;
+}
+
+.card-year, .card-to {
+    font-size: 1rem;
 }
 
 .card-brand {
     text-align: center;
     opacity: 0.4;
+}
+
+#card-result {
+    
 }
 
 .actions button {
