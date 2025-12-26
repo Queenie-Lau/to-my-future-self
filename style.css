@@ -58,7 +58,7 @@ textarea {
     margin-top: 0.4rem;
     padding: 0.75rem;
     font-family: perandorySemiCondensed;
-    font-size: 1rem;
+    font-size: 1.3rem;
     border: none;
     border-bottom: 1px solid rgb(250, 246, 233);
     /* optional subtle border */
@@ -188,7 +188,6 @@ footer {
     justify-content: center;
     align-items: center;
     position: absolute;
-    padding: 5em;
 }
 
 .card-front img.welcome-card {
@@ -223,9 +222,14 @@ footer {
     position: absolute;
     display: flex;
     flex-direction: row;
+    padding: 10%;
 }
 
 .card-back.show {
     position: relative;
     /* after flip, make it interactive */
+}
+
+#to-label {
+    padding-top: 10%;
 }
